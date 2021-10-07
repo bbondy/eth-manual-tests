@@ -1,0 +1,62 @@
+<html>
+  <script type="text/javascript" src="https://unpkg.com/web3@1.2.2/dist/web3.min.js"></script>
+  <script>
+
+  const sendTransaction = ({ to, gasPrice }) =>
+  new Promise((resolve, reject) => {
+    if (window.ethereum) {
+      const ethereum = window.ethereum;
+      const Web3 = window.Web3;
+      const web3 = new Web3(ethereum);
+      try {
+        ethereum.enable().then(accounts => {
+          const from = accounts[0];
+          console.log('using window.ethereum way',{
+              from,
+              to,
+              gasPrice,
+              value: "0x25F38E9E0000000"
+            })
+          web3.eth.sendTransaction(
+            {
+              from,
+              to,
+              //gasPrice,
+              //value: "0x25F38E9E0000000"
+            },
+            (err, res) => {
+              err ? reject(err) : resolve();
+            }
+          );
+        });
+      } catch (error) {
+        reject(error);
+      }
+    } else if (window.web3) {
+      const Web3 = window.Web3;
+      const web3 = new Web3(window.web3.currentProvider);
+      web3.eth.getAccounts().then(accounts => {
+        const from = accounts[0];
+
+        web3.eth.sendTransaction(
+          {
+            to,
+            from,
+            value: "100000000000"
+          },
+          (err, res) => {
+            err ? reject(err) : resolve();
+          }
+        );
+      });
+    } else {
+      console.log(
+        "Non-Ethereum browser detected. You should consider trying MetaMask!"
+      );
+    }
+  });
+
+    sendTransaction({to: '0x37cc7fb2e9DD5673d759fb1e2ddd0D29fAcb1413', gasPrice: '0x25F38E9E00'})
+
+</script>
+</html>
