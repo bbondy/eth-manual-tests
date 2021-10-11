@@ -12,6 +12,9 @@
       <li><a href="javascript:request('eth_accounts')">eth_accounts</a></li>
       <li><a href="javascript:request('eth_requestAccounts')">eth_requestAccounts</a></li>
       <li><a href="javascript:request('wallet_addEthereumChain', addEthereumChainParams)">wallet_addEthereumChain</a></li>
+      <li><a href="javascript:sign('0x1234', 'request')">eth_sign</a></li>
+      <li><a href="javascript:sendTransaction(false, 'request')">eth_sendTransaction</a></li>
+      <li><a href="javascript:sendTransaction(true, 'request')">eth_sendTransaction (1559)</a></li>
     </ul>
 
     <h1>window.ethereum.sendAsync</h1>
@@ -20,6 +23,9 @@
       <li><a href="javascript:sendAsync('eth_accounts')">eth_accounts</a></li>
       <li><a href="javascript:sendAsync('eth_requestAccounts')">eth_requestAccounts</a></li>
       <li><a href="javascript:sendAsync('wallet_addEthereumChain', addEthereumChainParams)">wallet_addEthereumChain</a></li>
+      <li><a href="javascript:sign('0x1234', 'sendAsync')">eth_sign</a></li>
+      <li><a href="javascript:sendTransaction(false, 'sendAsync')">eth_sendTransaction</a></li>
+      <li><a href="javascript:sendTransaction(true, 'sendAsync')">eth_sendTransaction (1559)</a></li>
     </ul>
 
     <h1>window.ethereum.send</h1>
@@ -28,6 +34,9 @@
       <li><a href="javascript:send('eth_accounts')">eth_accounts</a></li>
       <li><a href="javascript:send('eth_requestAccounts')">eth_requestAccounts</a></li>
       <li><a href="javascript:send('wallet_addEthereumChain', addEthereumChainParams)">wallet_addEthereumChain</a></li>
+      <li><a href="javascript:sign('0x1234', 'send')">eth_sign</a></li>
+      <li><a href="javascript:sendTransaction(false, 'send')">eth_sendTransaction</a></li>
+      <li><a href="javascript:sendTransaction(true, 'send')">eth_sendTransaction (1559)</a></li>
     </ul>
     <h1>Other functions</h1>
     <ul>

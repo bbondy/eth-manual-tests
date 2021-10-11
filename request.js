@@ -44,3 +44,61 @@ async function request(method, params=[]) {
 async function enable() {
   console.log(await window.ethereum.enable())
 }
+
+async function sign(message, method) {
+  const accounts = await window.ethereum.request({
+    id: '191',
+    method: 'eth_accounts',
+    params: [],
+  })
+  if (accounts.length === 0) {
+    console.log('No accounts allowed')
+    return
+  }
+  const account = accounts[0]
+  const params = [account, message]
+  if (method == 'request') {
+    return request('eth_sign', params)
+  }
+  if (method == 'sendAsync') {
+    return sendAsync('eth_sign', params)
+  }
+  if (method == 'send') {
+    return send('eth_sign', params)
+  }
+}
+
+async function sendTransaction(is1559, method) {
+  const accounts = await window.ethereum.request({
+    id: '191',
+    method: 'eth_accounts',
+    params: [],
+  })
+  if (accounts.length === 0) {
+    console.log('No accounts allowed')
+    return
+  }
+  const from = accounts[0]
+  const to = accounts[0]
+  const params = [{
+    from,
+    to,
+    value: '0x25F38E9E00'
+  }]
+  if (is1559) {
+    params.max_priority_fee_per_gas = '0x00F38E9E00'
+    params.max_fee_per_gas = '0x25F38E9E00'
+  } else {
+    params.gasPrice = '0x25F38E9E00'
+  }
+
+  if (method == 'request') {
+    return request('eth_sendTransaction', params)
+  }
+  if (method == 'sendAsync') {
+    return sendAsync('eth_sendTransaction', params)
+  }
+  if (method == 'send') {
+    return send('eth_sendTransaction', params)
+  }
+}
