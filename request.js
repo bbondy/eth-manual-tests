@@ -85,11 +85,12 @@ async function sendTransaction(is1559, method) {
     to,
     value: '0x25F38E9E00'
   }]
-  if (is1559) {
-    params.max_priority_fee_per_gas = '0x00F38E9E00'
-    params.max_fee_per_gas = '0x25F38E9E00'
-  } else {
-    params.gasPrice = '0x25F38E9E00'
+  // Explicit check here so that undefined is also posible for neither gas fields
+  if (is1559 === true) {
+    params[0].maxPriorityFeePerGas = '0x00F38E9E00'
+    params[0].maxFeePerGas = '0x25F38E9E00'
+  } else if (is1559 === false) {
+    params[0].gasPrice = '0x25F38E9E00'
   }
 
   if (method == 'request') {
@@ -102,3 +103,20 @@ async function sendTransaction(is1559, method) {
     return send('eth_sendTransaction', params)
   }
 }
+
+window.ethereum.on('connect', function (chainId) {
+  console.log('connect event: ', chainId)
+})
+
+window.ethereum.on('disconnect', function (error) {
+  console.log('disconnect event: ', error)
+})
+
+window.ethereum.on('chainChanged', function (chainId) {
+  console.log('chainChanged: ', chainId)
+})
+
+window.ethereum.on('accountsChanged', function (accounts) {
+  console.log('accounts: ', accounts)
+})
+
