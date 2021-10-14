@@ -1,8 +1,7 @@
 const addEthereumChainParams = [{
   chainId: '0x38',
   chainName: 'Binance1 Smart Chain',
-  nativeCurrency: {
-  name: 'BNB',
+  nativeCurrency: { name: 'BNB',
   symbol: 'BNB',
   decimals: 18
 },
@@ -45,29 +44,6 @@ async function enable() {
   console.log(await window.ethereum.enable())
 }
 
-async function sign(message, method) {
-  const accounts = await window.ethereum.request({
-    id: '191',
-    method: 'eth_accounts',
-    params: [],
-  })
-  if (accounts.length === 0) {
-    console.log('No accounts allowed')
-    return
-  }
-  const account = accounts[0]
-  const params = [account, message]
-  if (method == 'request') {
-    return request('eth_sign', params)
-  }
-  if (method == 'sendAsync') {
-    return sendAsync('eth_sign', params)
-  }
-  if (method == 'send') {
-    return send('eth_sign', params)
-  }
-}
-
 async function sendTransaction(is1559, method, toInput) {
   const to = document.querySelector(toInput).value
   const accounts = await window.ethereum.request({
@@ -101,6 +77,56 @@ async function sendTransaction(is1559, method, toInput) {
   }
   if (method == 'send') {
     return send('eth_sendTransaction', params)
+  }
+}
+
+async function sign(method, messageInput) {
+  const message = document.querySelector(messageInput).value
+  const accounts = await window.ethereum.request({
+    id: '191',
+    method: 'eth_accounts',
+    params: [],
+  })
+  if (accounts.length === 0) {
+    console.log('No accounts allowed')
+    return
+  }
+  const from = accounts[0]
+  const params = [from, message]
+
+  if (method == 'request') {
+    return request('eth_sign', params)
+  }
+  if (method == 'sendAsync') {
+    return sendAsync('eth_sign', params)
+  }
+  if (method == 'send') {
+    return send('eth_sign', params)
+  }
+}
+
+async function personalSign(method, messageInput) {
+  const message = document.querySelector(messageInput).value
+  const accounts = await window.ethereum.request({
+    id: '191',
+    method: 'eth_accounts',
+    params: [],
+  })
+  if (accounts.length === 0) {
+    console.log('No accounts allowed')
+    return
+  }
+  const from = accounts[0]
+  const params = [message, from]
+
+  if (method == 'request') {
+    return request('personal_sign', params)
+  }
+  if (method == 'sendAsync') {
+    return sendAsync('personal_sign', params)
+  }
+  if (method == 'send') {
+    return send('personal_sign', params)
   }
 }
 
