@@ -68,7 +68,8 @@ async function sign(message, method) {
   }
 }
 
-async function sendTransaction(is1559, method) {
+async function sendTransaction(is1559, method, toInput) {
+  const to = document.querySelector(toInput).value
   const accounts = await window.ethereum.request({
     id: '191',
     method: 'eth_accounts',
@@ -79,11 +80,10 @@ async function sendTransaction(is1559, method) {
     return
   }
   const from = accounts[0]
-  const to = accounts[0]
   const params = [{
     from,
     to,
-    value: '0x25F38E9E00'
+    value: '0x16345785D8A0000'
   }]
   // Explicit check here so that undefined is also posible for neither gas fields
   if (is1559 === true) {
@@ -113,10 +113,10 @@ window.ethereum.on('disconnect', function (error) {
 })
 
 window.ethereum.on('chainChanged', function (chainId) {
-  console.log('chainChanged: ', chainId)
+  console.log('chainChanged event: ', chainId)
 })
 
 window.ethereum.on('accountsChanged', function (accounts) {
-  console.log('accounts: ', accounts)
+  console.log('accountsChanged event: ', accounts)
 })
 
