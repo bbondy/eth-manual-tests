@@ -10,6 +10,13 @@ rpcUrls: ['https://bsc-dataseed.binance.org/'],
   blockExplorerUrls: ['https://bscscan.com/'],
 }]
 
+const switchEthereumChainParams = [{
+  chainId: "0x4"
+}]
+const switchEthereumChainParams2 = [{
+  chainId: "0x3"
+}]
+
 function sendAsync(method, params=[]) {
   console.log('sendAsync...')
   window.ethereum.sendAsync({

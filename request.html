@@ -12,6 +12,8 @@
       <li><a href="javascript:request('eth_accounts')">eth_accounts</a></li>
       <li><a href="javascript:request('eth_requestAccounts')">eth_requestAccounts</a></li>
       <li><a href="javascript:request('wallet_addEthereumChain', addEthereumChainParams)">wallet_addEthereumChain</a></li>
+      <li><a href="javascript:request('wallet_switchEthereumChain', switchEthereumChainParams)">wallet_switchEthereumChain</a></li>
+      <li><a href="javascript:request('wallet_switchEthereumChain', switchEthereumChainParams2)">wallet_switchEthereumChain2</a></li>
       <li><a href="javascript:sendTransaction(false, 'request', '#request-to-1')">eth_sendTransaction</a> to: <input id="request-to-1"></li>
       <li><a href="javascript:sendTransaction(true, 'request', '#request-to-2')">eth_sendTransaction (1559)</a> to: <input id="request-to-2"></li>
       <li><a href="javascript:sendTransaction(undefined, 'request', '#request-to-3')">eth_sendTransaction (unspecified gas type)</a> to: <input id="request-to-3"></li>
@@ -25,6 +27,7 @@
       <li><a href="javascript:sendAsync('eth_accounts')">eth_accounts</a></li>
       <li><a href="javascript:sendAsync('eth_requestAccounts')">eth_requestAccounts</a></li>
       <li><a href="javascript:sendAsync('wallet_addEthereumChain', addEthereumChainParams)">wallet_addEthereumChain</a></li>
+      <li><a href="javascript:sendAsync('wallet_switchEthereumChain', switchEthereumChainParams)">wallet_switchEthereumChain</a></li>
       <li><a href="javascript:sendTransaction(false, 'sendAsync', '#sendAsync-to-1')">eth_sendTransaction</a> to: <input id="sendAsync-to-1"></li>
       <li><a href="javascript:sendTransaction(true, 'sendAsync', '#sendAsync-to-2')">eth_sendTransaction (1559)</a> to: <input id="sendAsync-to-2"></li>
       <li><a href="javascript:sendTransaction(undefined, 'sendAsync', '#sendAsync-to-3')">eth_sendTransaction (unspecified gas type)</a> to: <input id="sendAsync-to-3"></li>
@@ -38,6 +41,7 @@
       <li><a href="javascript:send('eth_accounts')">eth_accounts</a></li>
       <li><a href="javascript:send('eth_requestAccounts')">eth_requestAccounts</a></li>
       <li><a href="javascript:send('wallet_addEthereumChain', addEthereumChainParams)">wallet_addEthereumChain</a></li>
+      <li><a href="javascript:send('wallet_switchEthereumChain', switchEthereumChainParams)">wallet_switchEthereumChain</a></li>
       <li><a href="javascript:sendTransaction(false, 'send', '#send-to-1')">eth_sendTransaction</a> to: <input id="send-to-1"></li>
       <li><a href="javascript:sendTransaction(true, 'send', '#send-to-2')">eth_sendTransaction (1559)</a> to: <input id="send-to-2"></li>
       <li><a href="javascript:sendTransaction(undefined, 'send', '#send-to-3')">eth_sendTransaction (unspecified gas type)</a> to: <input id="send-to-3"></li>
