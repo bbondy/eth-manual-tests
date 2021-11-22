@@ -138,7 +138,32 @@ async function personalSign(method, messageInput) {
 }
 
 async function signTypedData(method, messageInput) {
-  const message = `{"types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Person":[{"name":"name","type":"string"},{"name":"wallet","type":"address"}],"Mail":[{"name":"from","type":"Person"},{"name":"to","type":"Person"},{"name":"contents","type":"string"}]},"primaryType":"Mail","domain":{"name":"Ether Mail","version":"1","chainId":1,"verifyingContract":"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"},"message":{"from":{"name":"Cow","wallet":"0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"},"to":{"name":"Bob","wallet":"0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB"},"contents":"Hello, Bob!"}}`
+  const message = {
+    "types":{
+      "EIP712Domain":[
+        {"name":"name","type":"string"},
+        {"name":"version","type":"string"},
+        {"name":"chainId","type":"uint256"},
+        {"name":"verifyingContract","type":"address"}],
+      "Person":[
+        {"name":"name","type":"string"},
+        {"name":"wallet","type":"address"}],
+      "Mail":[
+        {"name":"from","type":"Person"},
+        {"name":"to","type":"Person"},
+        {"name":"contents","type":"string"}]},
+      "primaryType":"Mail",
+      "domain":{
+        "name":"Ether Mail",
+        "version":"1",
+        "chainId":1,
+        "verifyingContract":"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"},
+      "message":{
+        "from":{"name":"Cow","wallet":"0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"},
+        "to":{"name":"Bob","wallet":"0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB"},
+        "contents":"Hello, Bob!"
+      }
+    }
   const accounts = await window.ethereum.request({
     id: '191',
     method: 'eth_accounts',
@@ -149,21 +174,49 @@ async function signTypedData(method, messageInput) {
     return
   }
   const from = accounts[0]
-  const params = [from, message]
+  const params = [from, JSON.stringify(message)]
 
   if (method == 'request') {
-    return request('eth_signTypedData', params)
+    return request('eth_signTypedData_v3', params)
   }
   if (method == 'sendAsync') {
-    return sendAsync('eth_signTypedData', params)
+    return sendAsync('eth_signTypedData_v3', params)
   }
   if (method == 'send') {
-    return send('eth_signTypedData', params)
+    return send('eth_signTypedData_v3', params)
   }
 }
 
 async function signTypedData_v4(method, messageInput) {
-  const message = `{"types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Person":[{"name":"name","type":"string"},{"name":"wallet","type":"address"}],"Mail":[{"name":"from","type":"Person"},{"name":"to","type":"Person"},{"name":"contents","type":"string"}]},"primaryType":"Mail","domain":{"name":"Ether Mail","version":"1","chainId":1,"verifyingContract":"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"},"message":{"from":{"name":"Cow","wallet":"0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"},"to":{"name":"Bob","wallet":"0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB"},"contents":"Hello, Bob!"}}`
+  const message = {
+    "types":{
+      "EIP712Domain":[
+        {"name":"name","type":"string"},
+        {"name":"version","type":"string"},
+        {"name":"chainId","type":"uint256"},
+        {"name":"verifyingContract","type":"address"}],
+      "Person":[
+        {"name":"name","type":"string"},
+        {"name":"wallet","type":"address"}],
+      "Mail":[
+        {"name":"from","type":"Person"},
+        {"name":"to","type":"Person[]"},
+        {"name":"contents","type":"string"}]},
+      "primaryType":"Mail",
+      "domain":{
+        "name":"Ether Mail",
+        "version":"1",
+        "chainId":1,
+        "verifyingContract":"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"},
+      "message":{
+        "from":{"name":"Cow","wallet":"0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826"},
+        "to": [
+          {"name":"Bob","wallet":"0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB"},
+          {"name":"Alice","wallet":"0xaAaAAAAaaAAAaaaAaaAaaaaAAaAaaaaAaAaaAAaA"},
+        ],
+        "contents":"Hello, Bob & Alice!"
+      }
+    }
   const accounts = await window.ethereum.request({
     id: '191',
     method: 'eth_accounts',
@@ -174,7 +227,7 @@ async function signTypedData_v4(method, messageInput) {
     return
   }
   const from = accounts[0]
-  const params = [from, message]
+  const params = [from, JSON.stringify(message)]
 
   if (method == 'request') {
     return request('eth_signTypedData_v4', params)
