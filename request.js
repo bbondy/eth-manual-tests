@@ -17,6 +17,16 @@ const switchEthereumChainParams2 = [{
   chainId: "0x3"
 }]
 
+const addTokenParams = [{
+  type: 'ERC20',
+  options: {
+    address: "0xE41d2489571d322189246DaFA5ebDe1F4699F498",
+    symbol: "ZRX",
+    decimals: 18,
+    image: "zrx.png"
+  }
+}]
+
 function sendAsync(method, params=[]) {
   console.log('sendAsync...')
   window.ethereum.sendAsync({
