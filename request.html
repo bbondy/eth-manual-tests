@@ -17,6 +17,10 @@
       <li><a href="javascript:sendTransaction(false, 'request', '#request-to-1')">eth_sendTransaction</a> to: <input id="request-to-1"></li>
       <li><a href="javascript:sendTransaction(true, 'request', '#request-to-2')">eth_sendTransaction (1559)</a> to: <input id="request-to-2"></li>
       <li><a href="javascript:sendTransaction(undefined, 'request', '#request-to-3')">eth_sendTransaction (unspecified gas type)</a> to: <input id="request-to-3"></li>
+      <li><a href="javascript:signTransaction(false, 'request', '#request-sign-to-1')">eth_signTransaction</a> to: <input id="request-sign-to-1"></li>
+      <li><a href="javascript:signTransaction(true, 'request', '#request-sign-to-2')">eth_signTransaction (1559)</a> to: <input id="request-sign-to-2"></li>
+      <li><a href="javascript:signTransaction(undefined, 'request', '#request-sign-to-3')">eth_signTransaction (unspecified gas type)</a> to: <input id="request-sign-to-3"></li>
+      <li><a href="javascript:sendRawTransaction('request', '#request-send-raw-tx')">eth_sendRawTransaction</a> raw tx: <input id="request-send-raw-tx"></li>
       <li><a href="javascript:sign('request', '#request-message-to-1')">eth_sign</a> message: <input id="request-message-to-1"></li>
       <li><a href="javascript:personalSign('request', '#request-message-to-2')">personal_sign</a> message: <input id="request-message-to-2"></li>
       <li><a href="javascript:signTypedData('request', '#request-message-to-3')">eth_signTypedData</a>
@@ -36,6 +40,10 @@
       <li><a href="javascript:sendTransaction(false, 'sendAsync', '#sendAsync-to-1')">eth_sendTransaction</a> to: <input id="sendAsync-to-1"></li>
       <li><a href="javascript:sendTransaction(true, 'sendAsync', '#sendAsync-to-2')">eth_sendTransaction (1559)</a> to: <input id="sendAsync-to-2"></li>
       <li><a href="javascript:sendTransaction(undefined, 'sendAsync', '#sendAsync-to-3')">eth_sendTransaction (unspecified gas type)</a> to: <input id="sendAsync-to-3"></li>
+      <li><a href="javascript:signTransaction(false, 'signAsync', '#signAsync-to-1')">eth_signTransaction</a> to: <input id="signAsync-to-1"></li>
+      <li><a href="javascript:signTransaction(true, 'signAsync', '#signAsync-to-2')">eth_signTransaction (1559)</a> to: <input id="signAsync-to-2"></li>
+      <li><a href="javascript:signTransaction(undefined, 'signAsync', '#signAsync-to-3')">eth_signTransaction (unspecified gas type)</a> to: <input id="signAsync-to-3"></li>
+      <li><a href="javascript:sendRawTransaction('sendAsync', '#sendAsync-send-raw-tx')">eth_sendRawTransaction</a> raw tx: <input id="sendAsync-send-raw-tx"></li>
       <li><a href="javascript:sign('sendAsync', '#sendAsync-message-to-1')">eth_sign</a> message: <input id="sendAsync-message-to-1"></li>
       <li><a href="javascript:personalSign('sendAsync', '#sendAsync-message-to-2')">personal_sign</a> message: <input id="sendAsync-message-to-2"></li>
       <li><a href="javascript:signTypedData('sendAsync', '#request-message-to-3')">eth_signTypedData</a>
@@ -55,6 +63,10 @@
       <li><a href="javascript:sendTransaction(false, 'send', '#send-to-1')">eth_sendTransaction</a> to: <input id="send-to-1"></li>
       <li><a href="javascript:sendTransaction(true, 'send', '#send-to-2')">eth_sendTransaction (1559)</a> to: <input id="send-to-2"></li>
       <li><a href="javascript:sendTransaction(undefined, 'send', '#send-to-3')">eth_sendTransaction (unspecified gas type)</a> to: <input id="send-to-3"></li>
+      <li><a href="javascript:signTransaction(false, 'send', '#sign-to-1')">eth_signTransaction</a> to: <input id="sign-to-1"></li>
+      <li><a href="javascript:signTransaction(true, 'send', '#sign-to-2')">eth_signTransaction (1559)</a> to: <input id="sign-to-2"></li>
+      <li><a href="javascript:signTransaction(undefined, 'send', '#sign-to-3')">eth_signTransaction (unspecified gas type)</a> to: <input id="sign-to-3"></li>
+      <li><a href="javascript:sendRawTransaction('send', '#sendAsync-send-raw-tx')">eth_sendRawTransaction</a> raw tx: <input id="sendAsync-send-raw-tx"></li>
       <li><a href="javascript:sign('send', '#send-message-to-1')">eth_sign</a> message: <input id="send-message-to-1"></li>
       <li><a href="javascript:personalSign('send', '#send-message-to-2')">personal_sign</a> message: <input id="send-message-to-2"></li>
       <li><a href="javascript:signTypedData('send', '#request-message-to-3')">eth_signTypedData</a>
