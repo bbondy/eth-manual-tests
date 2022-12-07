@@ -97,6 +97,57 @@ async function sendTransaction(is1559, method, toInput) {
   }
 }
 
+async function signTransaction(is1559, method, toInput) {
+  const to = document.querySelector(toInput).value
+  const accounts = await window.ethereum.request({
+    id: '191',
+    method: 'eth_accounts',
+    params: [],
+  })
+  if (accounts.length === 0) {
+    console.log('No accounts allowed')
+    return
+  }
+  const from = accounts[0]
+  const params = [{
+    from,
+    to,
+    value: '0x16345785D8A0000'
+  }]
+  // Explicit check here so that undefined is also posible for neither gas fields
+  if (is1559 === true) {
+    params[0].maxPriorityFeePerGas = '0x00F38E9E00'
+    params[0].maxFeePerGas = '0x25F38E9E00'
+  } else if (is1559 === false) {
+    params[0].gasPrice = '0x25F38E9E00'
+  }
+
+  if (method == 'request') {
+    return request('eth_signTransaction', params)
+  }
+  if (method == 'sendAsync') {
+    return sendAsync('eth_signTransaction', params)
+  }
+  if (method == 'send') {
+    return send('eth_signTransaction', params)
+  }
+}
+
+async function sendRawTransaction(method, txInput) {
+  const tx = document.querySelector(txInput).value
+  const params = [tx]
+
+  if (method == 'request') {
+    return request('eth_sendRawTransaction', params)
+  }
+  if (method == 'sendAsync') {
+    return sendAsync('eth_sendRawTransaction', params)
+  }
+  if (method == 'send') {
+    return send('eth_sendRawTransaction', params)
+  }
+}
+
 async function sign(method, messageInput) {
   const message = document.querySelector(messageInput).value
   const accounts = await window.ethereum.request({
