@@ -148,6 +148,21 @@ async function sendRawTransaction(method, txInput) {
   }
 }
 
+async function ethUnsubscribe(method, txInput) {
+  const subscriptionId = document.querySelector(txInput).value
+  const params = [subscriptionId]
+
+  if (method == 'request') {
+    return request('eth_unsubscribe', params)
+  }
+  if (method == 'sendAsync') {
+    return sendAsync('eth_unsubscribe', params)
+  }
+  if (method == 'send') {
+    return send('eth_unsubscribe', params)
+  }
+}
+
 async function sign(method, messageInput) {
   const message = document.querySelector(messageInput).value
   const accounts = await window.ethereum.request({

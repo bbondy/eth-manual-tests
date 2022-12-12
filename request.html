@@ -29,6 +29,7 @@
       <li><a href="javascript:request('wallet_getPermissions')">walet_getPermissions</a>
       <li><a href="javascript:request('wallet_watchAsset', addTokenParams)">wallet_watchAsset</a></li>
       <li><a href="javascript:request('eth_subscribe', ['newHeads'])">eth_subscribe (newHeads)</a></li>
+      <li><a href="javascript:ethUnsubscribe('request', '#request-subscription-id')">eth_unsubscribe</a> subscription ID: <input id="request-subscription-id"></li>
     </ul>
 
     <h1>window.ethereum.sendAsync</h1>
@@ -53,6 +54,7 @@
       <li><a href="javascript:sendAsync('wallet_getPermissions')">walet_getPermissions</a>
       <li><a href="javascript:sendAsync('wallet_watchAsset', addTokenParams)">wallet_watchAsset</a></li>
       <li><a href="javascript:sendAsync('eth_subscribe', ['newHeads'])">eth_subscribe (newHeads)</a></li>
+      <li><a href="javascript:ethUnsubscribe('sendAsync', '#sendAsync-subscription-id')">eth_unsubscribe</a> subscription ID: <input id="sendAsync-subscription-id"></li>
     </ul>
 
     <h1>window.ethereum.send</h1>
@@ -77,6 +79,7 @@
       <li><a href="javascript:send('wallet_getPermissions')">walet_getPermissions</a>
       <li><a href="javascript:send('wallet_watchAsset', addTokenParams)">wallet_watchAsset</a></li>
       <li><a href="javascript:send('eth_subscribe', ['newHeads'])">eth_subscribe (newHeads)</a></li>
+      <li><a href="javascript:ethUnsubscribe('send', '#send-subscription-id')">eth_unsubscribe</a> subscription ID: <input id="send-subscription-id"></li>
     </ul>
     </ul>
     <h1>Other functions</h1>
