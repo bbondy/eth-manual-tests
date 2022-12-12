@@ -317,3 +317,4 @@ window.ethereum.on('accountsChanged', function (accounts) {
   console.log('accountsChanged event: ', accounts)
 })
 
+window.ethereum.on('message', (data) => console.log('message event: ', data))
