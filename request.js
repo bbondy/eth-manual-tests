@@ -163,7 +163,7 @@ async function ethUnsubscribe(method, txInput) {
   }
 }
 
-async function sign(method, messageInput) {
+async function sign(method, messageInput, isSIWE = false) {
   const message = document.querySelector(messageInput).value
   const accounts = await window.ethereum.request({
     id: '191',
@@ -175,7 +175,14 @@ async function sign(method, messageInput) {
     return
   }
   const from = accounts[0]
-  const params = [from, message]
+  let hex = message
+  if (isSIWE) {
+    hex = '0x'
+    for (let i = 0; i < message.length; i++) {
+      hex += message.charCodeAt(i).toString(16).padStart(2, '0')
+    }
+  }
+  const params = [from, hex]
 
   if (method == 'request') {
     return request('eth_sign', params)
